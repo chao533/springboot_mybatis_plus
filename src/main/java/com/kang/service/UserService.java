@@ -1,8 +1,8 @@
 package com.kang.service;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.kang.common.msg.Message;
+import com.kang.common.page.CommonPage;
 import com.kang.model.User;
 import com.kang.model.dto.UserDTO;
 import com.kang.model.param.UserParam;
@@ -26,7 +26,7 @@ public interface UserService extends IService<User> {
 	
 	Message<UserDTO> getUserOne(Long id);
 	
-	Message<IPage<UserDTO>> getUserList(UserQueryParam param);
+	Message<CommonPage<UserDTO>> getUserList(UserQueryParam param);
 	
 	
 }

@@ -15,7 +15,7 @@ spring:
     username: root
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.36.131:3306/springboot_kang?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8
+    url: jdbc:mysql://192.168.36.132:3306/springboot_kang?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8
     type: com.alibaba.druid.pool.DruidDataSource
     #schema: classpath:sql/task_db.sql
     druid:

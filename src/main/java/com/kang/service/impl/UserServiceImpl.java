@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.kang.common.msg.ErrorCode;
 import com.kang.common.msg.Message;
+import com.kang.common.page.CommonPage;
 import com.kang.mapper.UserMapper;
 import com.kang.model.User;
 import com.kang.model.dto.UserDTO;
@@ -69,9 +70,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 	}
 
 	@Override
-	public Message<IPage<UserDTO>> getUserList(UserQueryParam param) {
+	public Message<CommonPage<UserDTO>> getUserList(UserQueryParam param) {
 		IPage<UserDTO> userList = userMapper.getUserList(new Page<>(param.getPageNum(),param.getPageSize()), BeanUtil.beanToMap(param));
-		return new Message<>(ErrorCode.SUCCESS,userList);
+		return new Message<>(ErrorCode.SUCCESS,CommonPage.restPage(userList));
 	}
 
 }

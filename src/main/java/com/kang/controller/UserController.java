@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.kang.common.msg.Message;
+import com.kang.common.page.CommonPage;
 import com.kang.model.dto.UserDTO;
 import com.kang.model.param.UserParam;
 import com.kang.model.param.UserQueryParam;
@@ -73,7 +73,7 @@ public class UserController {
 //    	@ApiImplicitParam(name = "search", value = "模糊搜索", dataType = "String")
 //    })
 	@RequestMapping(value = "/getList",method = RequestMethod.GET)
-	public Message<IPage<UserDTO>> getList(UserQueryParam param){
+	public Message<CommonPage<UserDTO>> getList(UserQueryParam param){
 		return userService.getUserList(param);
 	}
 }
