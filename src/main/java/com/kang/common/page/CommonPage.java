@@ -3,6 +3,7 @@ package com.kang.common.page;
 import java.util.List;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.github.pagehelper.PageInfo;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -31,6 +32,17 @@ public class CommonPage<T> {
         result.setPageSize(pageInfo.getSize());
         result.setTotal(pageInfo.getTotal());
         result.setList(pageInfo.getRecords());
+        return result;
+    }
+    
+    public static <T> CommonPage<T> restPage(List<T> list) {
+        CommonPage<T> result = new CommonPage<T>();
+        PageInfo<T> pageInfo = new PageInfo<T>(list);
+        result.setTotalPage(new Long(pageInfo.getPages()));
+        result.setPageNum(new Long(pageInfo.getPageNum()));
+        result.setPageSize(new Long(pageInfo.getPageSize()));
+        result.setTotal(pageInfo.getTotal());
+        result.setList(pageInfo.getList());
         return result;
     }
 

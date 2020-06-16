@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.github.pagehelper.PageHelper;
 import com.kang.common.msg.ErrorCode;
 import com.kang.common.msg.Message;
 import com.kang.common.page.CommonPage;
@@ -20,6 +21,7 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.lang.Assert;
+import cn.hutool.core.map.MapUtil;
 import cn.hutool.crypto.SecureUtil;
 
 /**
@@ -71,8 +73,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
 	@Override
 	public Message<CommonPage<UserDTO>> getUserList(UserQueryParam param) {
-		IPage<UserDTO> userList = userMapper.getUserList(new Page<>(param.getPageNum(),param.getPageSize()), BeanUtil.beanToMap(param));
-		return new Message<>(ErrorCode.SUCCESS,CommonPage.restPage(userList));
+		PageHelper.startPage(param.getPageNum().intValue(), param.getPageSize().intValue());
+//		IPage<UserDTO> userList = userMapper.getUserList(new Page<>(param.getPageNum(),param.getPageSize()), BeanUtil.beanToMap(param));
+		return new Message<>(ErrorCode.SUCCESS,CommonPage.restPage(userMapper.getUserList(BeanUtil.beanToMap(param))));
 	}
 
 }

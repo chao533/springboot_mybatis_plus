@@ -1,5 +1,6 @@
 package com.kang.mapper;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
@@ -21,5 +22,7 @@ public interface UserMapper extends BaseMapper<User> {
 	
 	
 	IPage<UserDTO> getUserList(IPage<?> page,@Param("p")Map<String,Object> params);
+	
+	List<UserDTO> getUserList(@Param("p")Map<String,Object> params);
 
 }
